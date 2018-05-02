@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Sample Database: Customer</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <section layout:fragment="content">
+      <div id="BackLink">
+        <a th:href="@{/}">Return to Main Menu</a>
+      </div>
+      <div id="Add Customer">
+          <h1>Add Customer</h1>
+
+      </div>
+      <p th:text="'Total number of customers in sample database: ' + ${count} + '!'" />
+      <div id="Customers">
+        <table>
+          <tr>
+              <th>CustomerID</th>  
+              <th>Name</th>  
+              <th>Discount Code</th>
+              <th>Phone No</th>
+          </tr>
+          <tr th:each="customer : ${customers}">
+            <td><a th:href="@{|/customer/${customer.customerId}|}" th:utext="${customer.customerId}"></a></td>
+            <td><b><a th:href="@{|/customer/${customer.customerId}|}">
+              <font color="BLACK" th:text="${customer.name}"></font>
+            </a></b></td>
+            <td th:text="${customer.email}"></td>
+            <td th:text="${customer.discountCode}"></td>
+            <td th:text="${customer.phone}"></td>
+          </tr>
+        </table>
+      </div>
+    </section>
+</body>
+</html>
