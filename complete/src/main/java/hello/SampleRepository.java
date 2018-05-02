@@ -77,7 +77,6 @@ public class SampleRepository {
         });
         
         System.out.println("Successfully added customer!");
-        
         return customer.getCustomerId();
     }
 	

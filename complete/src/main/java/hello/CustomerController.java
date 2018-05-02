@@ -30,8 +30,15 @@ public class CustomerController {
     public String addCustomer(@ModelAttribute Customer customer, Model model) {
         System.out.println("customer name="+ customer.getName());
         
-        model.addAttribute("name", customer.getName());
-        return "greeting";
+
+        customer.setZip("95051");
+  
+        
+        sampleRepository.addCustomer(customer);
+
+        
+        model.addAttribute("customer", customer);
+        return "redirect:list";
     }
     
     @GetMapping("/list")
@@ -40,6 +47,7 @@ public class CustomerController {
         List<Customer> customers = sampleRepository.getCustomers();
         model.addAttribute("count", count);
         model.addAttribute("customers", customers);  
+        model.addAttribute("customer", new Customer());
         return "customer";
     }
 }
